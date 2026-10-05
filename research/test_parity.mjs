@@ -1,0 +1,36 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import {buildFeatures,scoreRow,validateRecords} from './inference.mjs';
+const load=n=>JSON.parse(fs.readFileSync(new URL('./artifacts/'+n,import.meta.url),'utf8'));
+const demo=load('demo.json'), models=load('models.json'), fixture=load('parity-fixture.json');
+const features=buildFeatures(demo.records);
+let maxFeatureError=0,maxLRError=0,maxRFError=0;
+for(let j=0;j<fixture.recordIndices.length;j++){
+ const i=fixture.recordIndices[j];
+ features[i].forEach((x,k)=>{maxFeatureError=Math.max(maxFeatureError,Math.abs(x-fixture.features[j][k]));});
+ maxLRError=Math.max(maxLRError,Math.abs(scoreRow(features[i],models.models.logistic)-fixture.logisticScores[j]));
+ maxRFError=Math.max(maxRFError,Math.abs(scoreRow(features[i],models.models.forest)-fixture.forestScores[j]));
+}
+assert.ok(maxFeatureError<1e-10);assert.ok(maxLRError<1e-10);assert.ok(maxRFError<1e-10);
+const prefix=demo.records.slice(0,100);
+assert.deepEqual(buildFeatures(prefix),features.slice(0,100));
+const altered=prefix.map(r=>({...r,id:'x'+r.id,label:1-r.label,sender:'x'+r.sender,receiver:'x'+r.receiver}));
+assert.deepEqual(buildFeatures(altered),features.slice(0,100));
+assert.throws(()=>validateRecords([{...prefix[0],amount:NaN}]));
+assert.throws(()=>validateRecords([{...prefix[0],currency:'USD'}]));
+assert.throws(()=>validateRecords([prefix[0],prefix[0]]));
+assert.throws(()=>validateRecords([...prefix].reverse()));
+assert.throws(()=>validateRecords([null]));
+assert.throws(()=>validateRecords([{...prefix[0],id:''}]));
+assert.throws(()=>validateRecords([{...prefix[0],timestamp:'2026-02-30T00:00:00Z'}]));
+assert.throws(()=>validateRecords([{...prefix[0],amount:0.001}]));
+const same=[{id:'1',timestamp:'2026-01-01T00:00:00Z',sender:'A',receiver:'B',amount:10,currency:'CAD'}, {id:'2',timestamp:'2026-01-01T00:00:00Z',sender:'A',receiver:'C',amount:20,currency:'CAD'}];
+assert.equal(buildFeatures(same)[1][1],0);
+const hot=Array.from({length:20000},(_,i)=>({id:'hot'+i,timestamp:new Date(Date.UTC(2026,0,1)+i*1000).toISOString(),sender:'A',receiver:'B',amount:10,currency:'CAD'}));
+const start=performance.now();const hotFeatures=buildFeatures(hot);const hotAccountMilliseconds=performance.now()-start;
+assert.equal(hotFeatures.length,20000);assert.equal(hotFeatures.at(-1)[1],Math.log1p(19999));
+const extreme=(id,seconds,amount)=>({id:'extreme'+id,timestamp:new Date(Date.UTC(2026,0,1)+seconds*1000).toISOString(),sender:'A',receiver:'B',amount,currency:'CAD'});
+const largeHistory=Array.from({length:9999},(_,i)=>extreme(i,i,900000000.01));
+largeHistory.push(extreme(9999,10001,.01),extreme(10000,96400,.02));
+assert.equal(buildFeatures(largeHistory).at(-1)[2],Math.log1p(.01));
+console.log(JSON.stringify({status:'PASS',parityRows:fixture.recordIndices.length,maxFeatureError,maxLRError,maxRFError,causalAndValidationChecks:14,hotAccountRows:20000,hotAccountMilliseconds,extremeExpiryRows:10001},null,2));

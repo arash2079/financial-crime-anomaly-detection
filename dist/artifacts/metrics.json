@@ -1,0 +1,502 @@
+{
+  "metadata": {
+    "seed": 2079,
+    "dataset": "Original synthetic transactions; not IBM AML-Data",
+    "rows": 37320,
+    "positives": 2520,
+    "sha256": "60e8a32666d758db8ba70181a3ffaf51774d32f7f5bda77acb26fe1b54ad1713",
+    "start": "2026-01-01T00:02:04Z",
+    "end": "2026-03-01T23:59:30Z",
+    "splits": {
+      "train": {
+        "rows": 22392,
+        "positives": 1512,
+        "start": "2026-01-01T00:02:04Z",
+        "end": "2026-02-05T23:59:51Z"
+      },
+      "validation": {
+        "rows": 7464,
+        "positives": 504,
+        "start": "2026-02-06T00:00:32Z",
+        "end": "2026-02-17T23:53:01Z"
+      },
+      "test": {
+        "rows": 7464,
+        "positives": 504,
+        "start": "2026-02-18T00:00:24Z",
+        "end": "2026-03-01T23:59:30Z"
+      }
+    },
+    "versions": {
+      "python": "3.12.14",
+      "numpy": "2.3.5",
+      "pandas": "2.2.3",
+      "scipy": "1.17.0",
+      "scikit-learn": "1.8.0"
+    },
+    "functionHashes": {
+      "simulate": "0e4108d940773a44b8dc6b7f2d64b60f2b7006fe0cfceaf88fa886015e511b8e",
+      "causal_features": "814e26055ad0e8c1b4b0dff565042d4f382f8a38185f671829b82c57cc8cda01"
+    },
+    "trainingPolicy": "Fit train only; fixed model settings; validation report only. Test untouched by tuning. Historical context continues across chronological splits.",
+    "limitations": [
+      "Synthetic labels encode generator patterns, not confirmed criminality.",
+      "No operational or real-world effectiveness claim.",
+      "Benign hubs/payroll and anomalous amounts overlap, but simulator artifacts remain.",
+      "Isolation Forest anomaly rank is not calibrated probability.",
+      "Browser LR/RF probabilities are synthetic-label scores, not probability of financial crime.",
+      "No customer/bank/TD data used."
+    ],
+    "externalDatasetStatus": "IBM AML-Data not downloaded or evaluated; no external-data results claimed.",
+    "replayExample": {
+      "demoRecordIndex": 789,
+      "record": {
+        "id": "T000789",
+        "timestamp": "2026-01-02T10:32:36Z",
+        "sender": "A154",
+        "receiver": "A052",
+        "amount": 745.33,
+        "currency": "CAD",
+        "label": 1
+      },
+      "features": [
+        6.6151678616410825,
+        1.6094379124341003,
+        6.1645981906679115,
+        0.6931471805599453,
+        5.717915465122114,
+        2.0794415416798357,
+        8.2379236343219,
+        1.6094379124341003,
+        6.229121831971752,
+        3.096532180123511,
+        5.0106352940962555
+      ],
+      "logisticScore": 0.8441110025097458,
+      "forestScore": 0.9769026411427344,
+      "replay": "Load full demo.json, build all chronological features, select demoRecordIndex, score using models.json."
+    }
+  },
+  "results": {
+    "tabular_logistic": {
+      "validation": {
+        "averagePrecision": 0.10760797861350771,
+        "rocAuc": 0.6808996419449005,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 5,
+            "precision": 0.06666666666666667,
+            "recall": 0.00992063492063492
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 44,
+            "precision": 0.11764705882352941,
+            "recall": 0.0873015873015873
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 88,
+            "precision": 0.11780455153949129,
+            "recall": 0.1746031746031746
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.09098722025983125,
+        "rocAuc": 0.6437866322295202,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 6,
+            "precision": 0.08,
+            "recall": 0.011904761904761904
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 15,
+            "precision": 0.040106951871657755,
+            "recall": 0.02976190476190476
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 56,
+            "precision": 0.0749665327978581,
+            "recall": 0.1111111111111111
+          }
+        ]
+      }
+    },
+    "tabular_forest": {
+      "validation": {
+        "averagePrecision": 0.10537941426711572,
+        "rocAuc": 0.6657338989235541,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 5,
+            "precision": 0.06666666666666667,
+            "recall": 0.00992063492063492
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 53,
+            "precision": 0.14171122994652408,
+            "recall": 0.10515873015873016
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 91,
+            "precision": 0.12182061579651941,
+            "recall": 0.18055555555555555
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.10310166892117167,
+        "rocAuc": 0.6523552955665024,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 3,
+            "precision": 0.04,
+            "recall": 0.005952380952380952
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 46,
+            "precision": 0.12299465240641712,
+            "recall": 0.09126984126984126
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 91,
+            "precision": 0.12182061579651941,
+            "recall": 0.18055555555555555
+          }
+        ]
+      }
+    },
+    "tabular_isolation": {
+      "validation": {
+        "averagePrecision": 0.05551950197006419,
+        "rocAuc": 0.4214932836161284,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 2,
+            "precision": 0.02666666666666667,
+            "recall": 0.003968253968253968
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 16,
+            "precision": 0.0427807486631016,
+            "recall": 0.031746031746031744
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 32,
+            "precision": 0.0428380187416332,
+            "recall": 0.06349206349206349
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.04988894277647092,
+        "rocAuc": 0.3774763102079912,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 2,
+            "precision": 0.02666666666666667,
+            "recall": 0.003968253968253968
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 11,
+            "precision": 0.029411764705882353,
+            "recall": 0.021825396825396824
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 15,
+            "precision": 0.020080321285140562,
+            "recall": 0.02976190476190476
+          }
+        ]
+      }
+    },
+    "historical_logistic": {
+      "validation": {
+        "averagePrecision": 0.17509223375458174,
+        "rocAuc": 0.751862684729064,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 7,
+            "precision": 0.09333333333333334,
+            "recall": 0.013888888888888888
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 101,
+            "precision": 0.2700534759358289,
+            "recall": 0.2003968253968254
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 175,
+            "precision": 0.23427041499330656,
+            "recall": 0.3472222222222222
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.14004262538473627,
+        "rocAuc": 0.7161124794745485,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 4,
+            "precision": 0.05333333333333334,
+            "recall": 0.007936507936507936
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 70,
+            "precision": 0.18716577540106952,
+            "recall": 0.1388888888888889
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 152,
+            "precision": 0.2034805890227577,
+            "recall": 0.30158730158730157
+          }
+        ]
+      }
+    },
+    "historical_forest": {
+      "validation": {
+        "averagePrecision": 0.4391628067377815,
+        "rocAuc": 0.8026312488596972,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 68,
+            "precision": 0.9066666666666666,
+            "recall": 0.1349206349206349
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 187,
+            "precision": 0.5,
+            "recall": 0.37103174603174605
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 244,
+            "precision": 0.32663989290495316,
+            "recall": 0.48412698412698413
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.4185266103140224,
+        "rocAuc": 0.7890757560207992,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 68,
+            "precision": 0.9066666666666666,
+            "recall": 0.1349206349206349
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 189,
+            "precision": 0.5053475935828877,
+            "recall": 0.375
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 230,
+            "precision": 0.3078982597054886,
+            "recall": 0.45634920634920634
+          }
+        ]
+      }
+    },
+    "historical_isolation": {
+      "validation": {
+        "averagePrecision": 0.07814263237987681,
+        "rocAuc": 0.5697440590220763,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 3,
+            "precision": 0.04,
+            "recall": 0.005952380952380952
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 30,
+            "precision": 0.08021390374331551,
+            "recall": 0.05952380952380952
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 56,
+            "precision": 0.0749665327978581,
+            "recall": 0.1111111111111111
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.07260244622984222,
+        "rocAuc": 0.5547358203338807,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 1,
+            "precision": 0.013333333333333334,
+            "recall": 0.001984126984126984
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 14,
+            "precision": 0.0374331550802139,
+            "recall": 0.027777777777777776
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 45,
+            "precision": 0.060240963855421686,
+            "recall": 0.08928571428571429
+          }
+        ]
+      }
+    },
+    "amount_rule": {
+      "validation": {
+        "averagePrecision": 0.10760797861350771,
+        "rocAuc": 0.6808996419449005,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 5,
+            "precision": 0.06666666666666667,
+            "recall": 0.00992063492063492
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 44,
+            "precision": 0.11764705882352941,
+            "recall": 0.0873015873015873
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 88,
+            "precision": 0.11780455153949129,
+            "recall": 0.1746031746031746
+          }
+        ]
+      },
+      "test": {
+        "averagePrecision": 0.09098722025983125,
+        "rocAuc": 0.6437866322295202,
+        "rows": 7464,
+        "positives": 504,
+        "budgets": [
+          {
+            "fraction": 0.01,
+            "reviewed": 75,
+            "truePositives": 6,
+            "precision": 0.08,
+            "recall": 0.011904761904761904
+          },
+          {
+            "fraction": 0.05,
+            "reviewed": 374,
+            "truePositives": 15,
+            "precision": 0.040106951871657755,
+            "recall": 0.02976190476190476
+          },
+          {
+            "fraction": 0.1,
+            "reviewed": 747,
+            "truePositives": 56,
+            "precision": 0.0749665327978581,
+            "recall": 0.1111111111111111
+          }
+        ]
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+# Model card
+
+**Purpose:** Research and portfolio demonstration of temporal alert ranking using synthetic transaction data. Compare historical feature engineering against an amount-only control under the same train/test protocol. Intended audiences are technical reviewers and students, not operational investigators making customer decisions.
+
+**Models:** StandardScaler + balanced Logistic Regression; balanced Random Forest with 32 trees, depth <=8 and min leaf 12; 32-tree Isolation Forest, max samples 256. Historical LR and RF are exported for browser inference. Isolation Forest is evaluated but not browser-exported. Code, seed and pinned dependencies regenerate every artifact.
+
+**Inputs:** Eleven causal numeric features defined in FEATURE_CONTRACT.md. No labels, IDs, raw account identity, future aggregates or receiver behavior observed after event time. Models do not explicitly learn graph motifs/cycles; the simulator includes cycle episodes, and models receive historical aggregate features only.
+
+**Scores:** LR/RF synthetic-label positive class outputs lie in [0,1]. Balanced fitting changes the effective class distribution; scores are uncalibrated. A score of 0.8 must not be interpreted as an 80% probability of money laundering. Threshold selection and review budget modify ranking/alert volume, not model weights. Isolation Forest scores are rankings rather than probabilities.
+
+**Validation:** Frozen chronological train/validation/test. Primary AP, supplementary ROC-AUC, precision/recall at 1/5/10% budgets. Full measured results and versions are in metrics.json. Historical RF test AP 0.419 versus amount-only RF 0.103; test top5% precision 0.505 and recall 0.375. These measurements describe only this simulator. Historical IF test AP 0.073 demonstrates a weak baseline. Models are neither calibrated nor externally validated. No multi-seed uncertainty estimates or operational performance claims.
+
+**Interpretability:** LR signed contributions are exact additive terms in standardized log odds, not evidence of causation. Browser RF indicator descriptions should be factual account-history statements, not fabricated model explanations. The financial-flow graph is a display of records; visual edges do not constitute a graph ML model.
+
+**Verification:** Python tests cover same-time exclusion, future invariance, label/ID/account-rename invariance, deterministic seed, window boundary, equivalent timestamps, invalid evaluation windows and exact-cent amounts. Native JS tests compare every demo row's full feature vector, LR score and RF score against Python reference within 1e-10 and reject malformed/unsorted/duplicate input. A 20,000-row hot-account stress check verifies bounded history generation, and Python/JS 10,001-row extreme-expiry regressions verify that exact integer-cent totals preserve a one-cent remainder after thousands of large values expire. Source-function hashes and generated-data checksums support reproducibility. These checks do not establish real-world ML effectiveness.
+
+**Next research milestones:** External-data license review; temporal external benchmark; robust multi-seed confidence intervals; calibration against untouched validation labels; account-disjoint and distribution-shift evaluation; graph feature ablation; reproducible performance/scale tests. Each milestone requires measured results before any corresponding claim is made.

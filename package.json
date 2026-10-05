@@ -1,0 +1,15 @@
+{
+  "name": "financial-crime-anomaly-detection",
+  "version": "0.1.0",
+  "private": true,
+  "type": "module",
+  "description": "Reproducible synthetic temporal transaction research and local ML inference",
+  "scripts": {
+    "test": "node --test tests/*.test.mjs && node research/test_parity.mjs && node scripts/verify-web.mjs",
+    "sync:artifacts": "python scripts/sync-web-artifacts.py",
+    "serve": "python -m http.server 8000 --directory dist"
+  },
+  "engines": {
+    "node": ">=24"
+  }
+}

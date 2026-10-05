@@ -1,0 +1,15 @@
+import fs from 'node:fs';
+import assert from 'node:assert/strict';
+import path from 'node:path';
+import {fileURLToPath} from 'node:url';
+const root=path.resolve(path.dirname(fileURLToPath(import.meta.url)),'..');
+const read=p=>fs.readFileSync(path.join(root,p),'utf8');
+const html=read('dist/index.html'),app=read('dist/app.mjs');
+for(const match of app.matchAll(/\$\('([^']+)'\)/g))assert.ok(html.includes(`id="${match[1]}"`),`Missing UI ID ${match[1]}`);
+for(const m of html.matchAll(/(?:href|src)="\.\/([^"#]+)"/g))assert.ok(fs.existsSync(path.join(root,'dist',m[1])),`Missing asset ${m[1]}`);
+for(const file of ['models.json','metrics.json','demo.json','parity-fixture.json'])assert.equal(read('research/artifacts/'+file),read('dist/artifacts/'+file),'Artifacts drift: '+file);
+assert.equal(read('research/inference.mjs'),read('dist/inference.mjs'),'Inference modules drift');
+assert.ok(!/\.innerHTML\s*=|eval\(|new Function\(/.test(app),'Unsafe user rendering/execution');
+assert.ok(html.includes('SIMULATION ONLY')&&html.includes('External IBM benchmark pending'));
+assert.ok(!/<script[^>]+src="https?:/.test(html),'External scripts not expected');
+console.log(JSON.stringify({status:'PASS',checks:'UI IDs, local assets, artifact identity, inference identity, safe rendering and provenance labels',browserLayoutTested:false}));

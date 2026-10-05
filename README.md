@@ -82,9 +82,7 @@ accessibility, hosting/network and dependency vulnerability checks were not run.
 Node worker execution is not browser-rendering validation. Optional WebMCP
 registration is feature-detected but supported-browser validation was unavailable.
 
-GitHub writes currently return integration HTTP 403. Source/CI synchronization
-awaits the owner adding this new repository to the connection. No remote CI run
-is claimed. The Site retains the completed prototype source independently.
+The owner resolved initial integration access. Source is submitted through a reviewed feature branch. Local checks passed; the prepared GitHub Actions workflow will run after upload. Remote CI status is reported separately from local evidence.
 
 ## Licensing and contribution
 
