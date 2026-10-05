@@ -218,3 +218,13 @@ __marimo__/
 
 # Streamlit
 .streamlit/secrets.toml
+
+
+# Static site source is authored and tracked
+!dist/
+!dist/**
+node_modules/
+.sites-runtime/
+raw_data/
+*.zip
+*.tar.gz
