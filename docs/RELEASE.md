@@ -2,7 +2,7 @@
 
 Published 5 October 2026.
 
-- Public demo: https://aml-radar-arash.arashamini.chatgpt.site
+- GitHub Pages target (availability requires successful deployment): https://arash2079.github.io/financial-crime-anomaly-detection/
 - Source: https://github.com/arash2079/financial-crime-anomaly-detection
 - Reviewed/merged implementation: https://github.com/arash2079/financial-crime-anomaly-detection/pull/1
 - Successful GitHub Actions verification: https://github.com/arash2079/financial-crime-anomaly-detection/actions/runs/37322625050
