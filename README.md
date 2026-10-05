@@ -4,7 +4,7 @@ An interactive, reproducible **simulation-only research prototype** by Arash Ami
 Explore genuine trained-model inference, causal transaction history, measured
 model comparisons and fixed-budget review queues. No TD/employer/customer data.
 
-**Demo:** https://aml-radar-arash.arashamini.chatgpt.site
+**GitHub Pages demo (deployment status: see Actions):** https://arash2079.github.io/financial-crime-anomaly-detection/
 
 Not a production AML/compliance system. Scores are uncalibrated synthetic-label
 outputs, not evidence or probabilities of crime. IBM data has not been evaluated.
@@ -102,3 +102,7 @@ follow only as a justified measured comparison.
 ## Release evidence
 
 [Release report](docs/RELEASE.md) records the successful GitHub Actions run, merged implementation and initial publication.
+
+## Hosting
+
+GitHub Pages serves `dist/`. Model inference and CSV processing run locally in the browser. No remote inference API or backend is required. The Pages workflow validates the research and interface before uploading the static artifact. See [deployment instructions](docs/DEPLOYMENT.md).

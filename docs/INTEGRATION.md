@@ -35,7 +35,7 @@ and dependency vulnerability scanning were not executed.
 Public GitHub repository `arash2079/financial-crime-anomaly-detection` exists. Initial writes returned HTTP 403 because the GitHub App selected only the earlier repository. On 5 October the owner added this project, and a successful tree/commit/ref write verified the correction. The charter and architecture commit is `2cdb9600bcc57e2a3379dad0dbf2b4af271a7d40`. Implementation is submitted through a feature branch and Pull Request. Remote CI status is reported after the actual run, separately from local tests.
 
 This prepublication source report does not invent deployment or remote CI success;
-publication is confirmed separately by the native hosting result.
+GitHub Pages publication must be confirmed separately by its deployment run.
 
 ## Release scope
 
@@ -45,4 +45,4 @@ the final externally validated admissions research release.
 
 ## Final source/CI evidence
 
-GitHub Actions run 37322625050 completed successfully; verify job passed each Python/Node/parity step. PR #1 was merged as 6b95d7bb2a94c8b4fdf9359ff54a687ea33fe48d. Main app was read back and matches submitted source. Initial publication reached succeeded; see RELEASE.md for links and the preserved limitations.
+GitHub Actions run 37322625050 completed successfully; verify job passed each Python/Node/parity step. PR #1 was merged as 6b95d7bb2a94c8b4fdf9359ff54a687ea33fe48d. Main app was read back and matches submitted source. These results validate the original implementation. See RELEASE.md for hosting status and preserved limitations.

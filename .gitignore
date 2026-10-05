@@ -224,7 +224,6 @@ __marimo__/
 !dist/
 !dist/**
 node_modules/
-.sites-runtime/
 raw_data/
 *.zip
 *.tar.gz
