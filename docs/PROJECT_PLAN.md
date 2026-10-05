@@ -4,7 +4,7 @@ Prepared for Arash Amini • 5 October 2026 • Planning version 0.2
 
 ## Current status
 
-GitHub repository exists and public reads work. Integration source writes returned HTTP 403 because this repository is not selected in the GitHub App. Source synchronization is pending owner action. A v0.1 simulation prototype has been trained/integrated: 37,320 original synthetic rows, chronological evaluation, 11 Python tests and 12 Node tests passed, plus 1,044-row inference parity. IBM benchmarking and browser visual/E2E checks remain pending. The audit/integration reports record evidence and limitations.
+GitHub repository exists and authenticated source writes now work after the owner corrected repository selection. Charter and architecture were committed. A v0.1 simulation prototype has been trained and integrated: 37,320 original synthetic rows, chronological evaluation, 11 Python tests and 12 Node tests passed, plus 1,044-row parity. Implementation is being submitted in a feature branch. IBM benchmarking and browser visual/E2E checks remain pending; audit and integration reports record evidence.
 
 ## Selection rationale
 
@@ -194,4 +194,4 @@ can explain the code, decisions, experiments and limitations in an interview.
 
 ## Immediate next action
 
-Commit this charter and architecture, then develop the reproducible ML pipeline and interactive interface. IBM acquisition is attempted independently. ADR-001 selects native browser ES modules in place of React for a bounded static interface, preserving genuine trained-model inference and reducing runtime dependencies. GitHub source writes are currently blocked by the integration's HTTP 403 response. The user must grant repository access or resolve the connection permission before those writes can be completed. Local development and Sites publication remain independent.
+Commit this charter and architecture, then develop the reproducible ML pipeline and interactive interface. IBM acquisition is attempted independently. ADR-001 selects native browser ES modules in place of React for a bounded static interface, preserving genuine trained-model inference and reducing runtime dependencies. Initial GitHub integration HTTP 403 was resolved by the owner. Submit reviewed implementation and CI, publish the Site, and continue the external dataset milestone when data is available.

@@ -1,0 +1,11 @@
+cff-version: 1.2.0
+message: "Cite the actual source version and simulation-only data scope."
+title: "AML Radar: Temporal transaction anomaly detection research prototype"
+type: software
+version: 0.1.0
+license: MIT
+authors:
+  - family-names: Amini
+    given-names: Arash
+repository-code: "https://github.com/arash2079/financial-crime-anomaly-detection"
+date-released: 2026-10-05

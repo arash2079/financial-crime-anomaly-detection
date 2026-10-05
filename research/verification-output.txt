@@ -1,0 +1,27 @@
+test_account_rename_invariant (test_pipeline.CausalFeaturesTests.test_account_rename_invariant) ... ok
+test_cent_contract (test_pipeline.CausalFeaturesTests.test_cent_contract) ... ok
+test_equivalent_timestamp_groups (test_pipeline.CausalFeaturesTests.test_equivalent_timestamp_groups) ... ok
+test_extreme_expiry_retains_one_cent (test_pipeline.CausalFeaturesTests.test_extreme_expiry_retains_one_cent) ... ok
+test_future_does_not_change_past (test_pipeline.CausalFeaturesTests.test_future_does_not_change_past) ... ok
+test_labels_and_ids_not_predictors (test_pipeline.CausalFeaturesTests.test_labels_and_ids_not_predictors) ... ok
+test_same_timestamp_not_visible (test_pipeline.CausalFeaturesTests.test_same_timestamp_not_visible) ... ok
+test_seed_determinism (test_pipeline.CausalFeaturesTests.test_seed_determinism) ... ok
+test_single_class_evaluation_rejected (test_pipeline.CausalFeaturesTests.test_single_class_evaluation_rejected) ... ok
+test_unsorted_rejected (test_pipeline.CausalFeaturesTests.test_unsorted_rejected) ... ok
+test_window_boundary (test_pipeline.CausalFeaturesTests.test_window_boundary) ... ok
+
+----------------------------------------------------------------------
+Ran 11 tests in 4.176s
+
+OK
+{
+  "status": "PASS",
+  "parityRows": 1044,
+  "maxFeatureError": 1.7763568394002505e-15,
+  "maxLRError": 3.885780586188048e-16,
+  "maxRFError": 4.6629367034256575e-15,
+  "causalAndValidationChecks": 14,
+  "hotAccountRows": 20000,
+  "hotAccountMilliseconds": 51.823825,
+  "extremeExpiryRows": 10001
+}
