@@ -42,3 +42,7 @@ publication is confirmed separately by the native hosting result.
 v0.1 simulation prototype with actual training/inference and measured experiments.
 External IBM research benchmarking and browser checks are pending. This is not
 the final externally validated admissions research release.
+
+## Final source/CI evidence
+
+GitHub Actions run 37322625050 completed successfully; verify job passed each Python/Node/parity step. PR #1 was merged as 6b95d7bb2a94c8b4fdf9359ff54a687ea33fe48d. Main app was read back and matches submitted source. Initial publication reached succeeded; see RELEASE.md for links and the preserved limitations.

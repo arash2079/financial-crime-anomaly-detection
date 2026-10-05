@@ -4,7 +4,7 @@ An interactive, reproducible **simulation-only research prototype** by Arash Ami
 Explore genuine trained-model inference, causal transaction history, measured
 model comparisons and fixed-budget review queues. No TD/employer/customer data.
 
-**Demo:** https://aml-radar-arash.wiggly-charm-1042.chatgpt.site
+**Demo:** https://aml-radar-arash.arashamini.chatgpt.site
 
 Not a production AML/compliance system. Scores are uncalibrated synthetic-label
 outputs, not evidence or probabilities of crime. IBM data has not been evaluated.
@@ -98,3 +98,7 @@ Acquire the official [IBM AML-Data](https://github.com/IBM/AML-Data), verify its
 version/license/schema, freeze temporal evaluation and repeat the comparison.
 Then add repeated seeds, shift and entity-holdout tests. Graph models should
 follow only as a justified measured comparison.
+
+## Release evidence
+
+[Release report](docs/RELEASE.md) records the successful GitHub Actions run, merged implementation and initial publication.
