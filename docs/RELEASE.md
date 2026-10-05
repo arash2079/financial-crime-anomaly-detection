@@ -1,6 +1,6 @@
 # Release report — AML Radar v0.1
 
-Published 5 October 2026.
+Implementation release verified 5 October 2026. GitHub Pages migration is pending deployment confirmation.
 
 - GitHub Pages target (availability requires successful deployment): https://arash2079.github.io/financial-crime-anomaly-detection/
 - Source: https://github.com/arash2079/financial-crime-anomaly-detection
@@ -25,9 +25,8 @@ GitHub Actions job `verify` completed successfully for implementation commit
 and matched the submitted source. Independent retraining and audit findings are
 recorded in AUDIT.md; later assembly/worker evidence is in INTEGRATION.md.
 
-The native hosting system confirmed initial deployment `succeeded` and returned
-the public URL above. No browser navigation or HTTP fetch of the deployed Site
-was used to claim end-to-end correctness.
+GitHub Pages publication is tracked separately by the migration workflow.
+The earlier implementation CI run above verifies source tests, not the new hosting deployment.
 
 ## Measured simulator result
 
