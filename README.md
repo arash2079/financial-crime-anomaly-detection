@@ -101,7 +101,7 @@ follow only as a justified measured comparison.
 
 ## Release evidence
 
-[Release report](docs/RELEASE.md) records the successful GitHub Actions run, merged implementation and initial publication.
+[Release report](docs/RELEASE.md) records prior implementation verification and current hosting status.
 
 ## Hosting
 
